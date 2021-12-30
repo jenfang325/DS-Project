@@ -20,7 +20,7 @@ public class Main extends HttpServlet {
     public Main() {
         // TODO Auto-generated constructor stub
     	super();
-    	/////
+    	///
     }
 
 	/**
