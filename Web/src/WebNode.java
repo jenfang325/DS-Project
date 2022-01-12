@@ -1,31 +1,36 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
-
-// ¤lºô­¶­n«}???????
 
 public class WebNode {
 	public WebNode parent;
 	public ArrayList<WebNode> children;
-	public WebPage webPage;	
-	public double nodeScore;
+	public WebPage webPage;	//child element
+	public double nodeScore;//main element This node's score += all its childrenÂ¡Â¦s nodeScore
 	
 	public WebNode(WebPage webPage){
 		this.webPage = webPage;
 		this.children = new ArrayList<WebNode>();
 	}
 	
+	
 	public void setNodeScore(ArrayList<Keyword> keywords) throws IOException{
-		 
+		//this method should be called in post-order mode
+		
+		//**compute webPage score
 		webPage.setScore(keywords);
+		//**set webPage score to nodeScore
 		nodeScore = webPage.score;
 		
+		
+		//**nodeScore += all childrenÂ¡Â¦s nodeScore 
 		for(WebNode child : children){
 			nodeScore += child.nodeScore;
-		}		
+		}			
+			
 	}
 	
 	public void addChild(WebNode child){
+		//add the WebNode to its children list
 		this.children.add(child);
 		child.parent = this;
 	}
@@ -46,4 +51,7 @@ public class WebNode {
 		}
 		return retVal;
 	}
+
+
+	
 }

@@ -12,13 +12,17 @@ public class WebPage {
 		this.name = name;
 		this.counter = new WordCounter(url);	
 	}
-	
+
 	public void setScore(ArrayList<Keyword> keywords) throws IOException{
 		score = 0;
+//		3.calculate score
+		try {
 		for(Keyword k : keywords){	
+			score+=k.weight*counter.countKeyword(k.name);
+		}
+		}
+		catch(Exception e) {
 			
-			score += (k.weight)*counter.countKeyword(k.name);
-		
 		}
 	}
 	
